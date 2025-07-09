@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Zen+Dots&display=swap');
+
+        body {
+            text-transform: uppercase;
+            background-color: rgb(0, 0, 0);
+            text-align: center;
+            color: #fff;
+            font-family: "Zen Dots", sans-serif;
+        }
+
+        h1 {
+            font-size: 3em
+        }
+
+        h2 {
+            font-size: 1.5em;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .div-stack {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            min-height: 150px;
+            transition: all .5s;
+        }
+
+        #stack {
+            font-family: "Audiowide", sans-serif;
+            filter: drop-shadow(0 0 10px #4fff23);
+            font-style: normal;
+            color: #13e900;
+            font-size: 1.8em;
+        }
+
+        #start {
+            color: #13e900;
+            filter: drop-shadow(0 0 8px #4fff23);
+            background: none;
+            padding: 10px;
+            border: 2px solid #13e900;
+            border-radius: 10px;
+            cursor: pointer;
+            font-family: "Zen Dots", sans-serif;
+        }
+
+        #start:hover {
+            background-color: #064400;
+        }
+
+        #start:active {
+            color: white;
+            font-weight: bold;
+        }
+
+        #start:disabled {
+            background-color: #1f301d;
+            color: rgb(0, 0, 0);
+            font-weight: bold;
+            border-color: #1f301d;
+            cursor: default;
+        }
+
+        #sorteada{
+            font-family: "Audiowide", sans-serif;
+        }
+    </style>
+    <title>Sorteador de Stacks456</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Sorteador de Stacks</h1>
+        <main>
+            <h2>Com qual stack você terá que desenvolver sua nova aplicação?</h2>
+            <div class="div-stack">
+                <h3 id="stack">Stack</h3>
+            </div>
+            <button id="start" onclick="sortearStack()">Sortear</button>
+            <h3 id="sorteada"></h3>
+        </main>
+    </div>
+</body>
+
+<script>
+    const start = document.getElementById("start")
+    const stack = document.getElementById("stack");
+    const arrStacks = ["MERN", "MEAN", "PHP + MySQL", "React", "Node + Express + Firebase", "Node + Express + MySQL"];
+
+    function sortearStack() {
+
+        const sorteio = setInterval(() => {
+            start.disabled = true
+            stack.innerText = arrStacks[(Math.floor(Math.random() * arrStacks.length))]
+        }, 50);
+
+        setTimeout(() => {
+            clearInterval(sorteio);
+            sorteada.innerText = "A Stack sorteada é " + stack.textContent + "!";
+            start.disabled = false;
+
+        }, 5000);
+    }
+
+
+</script>
+
+</html>
