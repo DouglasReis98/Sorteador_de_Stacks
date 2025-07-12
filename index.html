@@ -92,6 +92,9 @@
 </head>
 
 <body>
+
+        <audio id="loading" src="audios/loading.mp3" type="audio/mp3"></audio>
+        <audio id="clear" src="audios/clear.mp3" type="audio/mp3"></audio>
     <div class="container">
         <h1>Sorteador de Stacks</h1>
         <main>
@@ -108,16 +111,24 @@
 <script>
     const start = document.getElementById("start")
     const stack = document.getElementById("stack");
+    const loading = document.getElementById("loading")
+    const clear = document.getElementById("clear")
+
     const arrStacks = ["MERN", "MEAN", "PHP + MySQL", "React", "Node + Express + Firebase", "Node + Express + MySQL"];
 
     function sortearStack() {
 
         const sorteio = setInterval(() => {
+            loading.play()
             start.disabled = true
             stack.innerText = arrStacks[(Math.floor(Math.random() * arrStacks.length))]
+            sorteada.innerText = "";
         }, 50);
 
         setTimeout(() => {
+            loading.pause()
+            loading.currentTime = 0
+            clear.play()
             clearInterval(sorteio);
             sorteada.innerText = "A Stack sorteada é " + stack.textContent + "!";
             start.disabled = false;
